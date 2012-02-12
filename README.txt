@@ -1,7 +1,7 @@
 Pears are common patterns of markup & style.
 
 Pears is an open source WordPress theme. I'll admit the code 
-is a bit rough, initially based on the default 'twentyone' theme.
+is a bit rough, initially based on the default 'twentyten' theme.
 
 I wanted a handy way of collecting HTML & CSS pattern pairs. 
 Often used modules with a minimal of style applied. It's become 

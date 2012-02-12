@@ -1,32 +1,38 @@
-<?php
-/**
- * The main template file.
- *
- * This is the most generic template file in a WordPress theme
- * and one of the two required files for a theme (the other being style.css).
- * It is used to display a page when nothing more specific matches a query.
- * E.g., it puts together the home page when no home.php file exists.
- * Learn more: http://codex.wordpress.org/Template_Hierarchy
- *
- * @package WordPress
- * @subpackage Twenty_Ten
- * @since Twenty Ten 1.0
- */
+<?php get_header(); ?>
 
-get_header(); ?>
+<div id="content" role="main">
 
-		<div id="container">
-			<div id="content" role="main">
+<?php if (have_posts()) while (have_posts()) : the_post(); ?>
+	
+	<style id="s" type="text/css">
+		<?php echo get_post_meta($post->ID, 'css', true); ?>
+	</style>
+	
+	<div id="pattern" class="mod group">
+		<h3 class="label">Pattern</h3> 
+		<h4><?php the_category(' '); ?> <span class="sep">&rarr;</span> <?php the_title(); ?></h4>
+		<div id="pattern-wrap" class="group"><?php echo get_post_meta($post->ID, 'html', true); ?></div>
+	</div>
+	
+	<div class="group">
+		<div id="markup" class="mod">
+			<h3 class="label">HTML</h3> <a href="#" class="clip" title="select code for copying"><img src="<?php echo home_url(); ?>/wp-content/themes/pears/images/icon-copy.png" alt="copy" /></a>
+			<textarea class="mod-ta"><?php echo get_post_meta($post->ID, 'html', true); ?></textarea>
+		</div>
+		<div id="style" class="mod">
+			<h3 class="label">CSS</h3> <a href="#" class="clip" title="select code for copying"><img src="<?php echo home_url(); ?>/wp-content/themes/pears/images/icon-copy.png" alt="copy" /></a>
+			<textarea id="css-code" class="mod-ta"><?php echo get_post_meta($post->ID, 'css', true); ?></textarea>
+		</div>
+	</div>
+	
+	<?php if ($post->post_content != "") { ?>
+		<div id="pattern-notes" class="mod">
+			<h3 class="label">Notes</h3>
+			<?php the_content(); ?>
+		</div>
+	<?php } ?>
 
-			<?php
-			/* Run the loop to output the posts.
-			 * If you want to overload this in a child theme then include a file
-			 * called loop-index.php and that will be used instead.
-			 */
-			 get_template_part( 'loop', 'index' );
-			?>
-			</div><!-- #content -->
-		</div><!-- #container -->
+<?php endwhile; ?>
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>
