@@ -8,9 +8,14 @@
 
 	<!-- jQuery -->
 	<?php wp_enqueue_script('jquery'); ?>
+	
+	<!-- plugin to scope the pattern styles -->
+	<script src="<?php bloginfo('template_directory'); ?>/js/jquery.scoped.js"></script>
 
 	<script>
-		$(document).ready(function() { 
+		$(document).ready(function() {
+			$.scoped();
+			
 			// update rendered pattern when user edits the textareas
 			$('#markup textarea').live('keyup', function(e) {
 				$('#pattern-wrap').html($(this).val());

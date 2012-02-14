@@ -3,15 +3,14 @@
 <div id="content" role="main">
 
 <?php if (have_posts()) while (have_posts()) : the_post(); ?>
-	
-	<style id="s" type="text/css">
-		<?php echo get_post_meta($post->ID, 'css', true); ?>
-	</style>
-	
+		
 	<div id="pattern" class="mod group">
 		<h3 class="label">Pattern</h3> 
 		<h4><?php the_category(' '); ?> <span class="sep">&rarr;</span> <?php the_title(); ?></h4>
-		<div id="pattern-wrap" class="group"><?php echo get_post_meta($post->ID, 'html', true); ?></div>
+		<div id="pattern-wrap" class="group">
+			<style scoped><?php echo get_post_meta($post->ID, 'css', true); ?></style>
+			<?php echo get_post_meta($post->ID, 'html', true); ?>
+		</div>
 	</div>
 	
 	<div class="group">

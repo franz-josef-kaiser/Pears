@@ -1,5 +1,13 @@
 <?php
 
+function pears_jquery_cnd() {
+    wp_deregister_script( 'jquery' );
+    wp_register_script( 'jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js');
+    wp_enqueue_script( 'jquery' );
+}    
+ 
+add_action('wp_enqueue_scripts', 'pears_jquery_cnd');
+
 add_action('add_meta_boxes', 'pears_add_meta_box');
 add_action('save_post', 'pears_save_post');
 
